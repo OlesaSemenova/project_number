@@ -21,6 +21,7 @@
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+let highscore = 0;
 
 document.querySelector('.question').textContent = secretNumber;
 
@@ -38,11 +39,16 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('body').style.backgroundColor = 'rgb(9, 250, 21)';
     document.querySelector('.question').style.width = '50rem';
 
+    if(score > highscore){
+      highscore = score;
+      document.querySelector('.highscore').textContent = score;
+    }
+
     //Too high
   } else if (guessingNumber > secretNumber) {
     if (score > 1) {
       document.querySelector('.guess-message').textContent = 'Слишком много!';
-      score--;
+      --;
       document.querySelector('.score').textContent = score;
     } else {
       document.querySelector('.guess-message').textContent = 'Game Over!';
